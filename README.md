@@ -24,7 +24,6 @@ binance-market-movers/
 │
 ├── dumping.js       # 📉 Biggest price drops
 ├── pumping.js       # 📈 Biggest price gains
-├── package.json
 └── README.md
 ```
 
