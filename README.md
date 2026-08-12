@@ -1,15 +1,32 @@
-# 📉 Binance Dumping Coins Tracker
+# 📊 Binance Market Movers
 
-A simple Node.js script that uses the **Binance API** to identify cryptocurrencies with the biggest price drops over the last 24 hours.
+A simple Node.js project that uses the **Binance API** to track the cryptocurrencies with the biggest price movements over the last 24 hours.
+
+The project can identify both:
+
+- 📉 **Dumping Coins** — cryptocurrencies with the biggest price drops
+- 📈 **Pumping Coins** — cryptocurrencies with the biggest price increases
 
 ## 🚀 Features
 
-- Fetches 24-hour market data from Binance
+- Fetches real-time 24-hour ticker data from Binance
 - Filters only **USDT trading pairs**
-- Finds cryptocurrencies with negative price changes
-- Sorts coins by the biggest percentage drop
-- Displays the **top 20 falling coins**
-- Shows price changes with two decimal places
+- Finds the biggest price drops
+- Finds the biggest price gains
+- Sorts cryptocurrencies by percentage change
+- Displays the top 20 market movers
+- Simple and lightweight Node.js implementation
+
+## 📁 Project Structure
+
+```text
+binance-market-movers/
+│
+├── dumping.js       # 📉 Biggest price drops
+├── pumping.js       # 📈 Biggest price gains
+├── package.json
+└── README.md
+```
 
 ## 🛠️ Requirements
 
@@ -22,8 +39,8 @@ A simple Node.js script that uses the **Binance API** to identify cryptocurrenci
 Clone the repository:
 
 ```bash
-git clone https://github.com/RadinAnsari/DumpingCoinsTracker.git
-cd binance-dumping-coins
+git clone https://github.com/YOUR_USERNAME/binance-market-movers.git
+cd binance-market-movers
 ```
 
 Install dependencies:
@@ -32,42 +49,94 @@ Install dependencies:
 npm install axios
 ```
 
-## ▶️ Usage
+## 📉 Dumping Coins
 
-Run the script:
+To find the cryptocurrencies with the biggest price drops:
 
 ```bash
-node dump.js
+node dumping.js
 ```
 
 Example output:
 
 ```text
-Biggest Drops:
+📉 Biggest Drops (24h)
 
-LUNAUSDT | -12.45%
-ABCUSDT  | -10.83%
-XYZUSDT  | -9.72%
+1. BTCUSDT | -12.45%
+2. ETHUSDT | -10.83%
+3. SOLUSDT | -9.72%
+4. XRPUSDT | -8.64%
 ```
 
-## ⚙️ How It Works
+The script:
 
-The script fetches 24-hour ticker data from Binance and processes it in four steps:
+1. Fetches Binance 24-hour ticker data.
+2. Filters only `USDT` pairs.
+3. Selects coins with a negative `priceChangePercent`.
+4. Sorts them from the biggest loss to the smallest loss.
+5. Displays the top 20 results.
 
-1. Filters only trading pairs ending with `USDT`.
-2. Removes coins with a positive or zero price change.
-3. Sorts the remaining coins by percentage change, from the biggest drop to the smallest.
-4. Displays the top 20 coins with the largest losses.
+## 📈 Pumping Coins
 
-## 📡 API
+To find the cryptocurrencies with the biggest price gains:
 
-This project uses the Binance 24-hour ticker API to retrieve market data.
+```bash
+node pumping.js
+```
+
+Example output:
+
+```text
+📈 Biggest Gains (24h)
+
+1. DOGEUSDT | +15.82%
+2. XRPUSDT  | +12.41%
+3. ADAUSDT  | +10.73%
+4. SOLUSDT  | +9.85%
+```
+
+The script:
+
+1. Fetches Binance 24-hour ticker data.
+2. Filters only `USDT` pairs.
+3. Selects coins with a positive `priceChangePercent`.
+4. Sorts them from the highest gain to the lowest gain.
+5. Displays the top 20 results.
+
+## 📡 Binance API
+
+This project uses the Binance 24-hour ticker endpoint to retrieve market data.
+
+The data includes information such as:
+
+- Trading pair
+- Price change
+- Price change percentage
+- Last price
+- Trading volume
+- High and low price
+
+## 🔧 Configuration
+
+The number of displayed coins can be changed by modifying:
+
+```js
+const TOP_COINS = 20;
+```
+
+For example, to display the top 10:
+
+```js
+const TOP_COINS = 10;
+```
 
 ## ⚠️ Disclaimer
 
-This project is intended for **educational and research purposes only**.
+This project is for **educational and research purposes only**.
 
-The information provided by this tool should not be considered financial or investment advice. Always do your own research before making any financial decisions.
+The information provided by this project should **not** be considered financial or investment advice.
+
+Cryptocurrency markets are highly volatile. Always do your own research and understand the risks before making any investment decisions.
 
 ## 📄 License
 
